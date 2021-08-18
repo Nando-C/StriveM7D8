@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* full card */
+#cardsDeck .card {
+  color: whitesmoke;
+  background-color: rgba(24, 24, 24, 0);
+  border-color: rgba(24, 24, 24, 0);
+  border-radius: 0.5em;
+  /* z-index: 5; */
+  transform: translateX(0px);  
+  transition: 0.2s all;
+
+}
+
+/* change card appearance on hover */
+#cardsDeck .card:hover {
+  transform: scale(1.09);
+  /* box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.2); */
+  cursor: pointer;
+  z-index: 3;
+}
