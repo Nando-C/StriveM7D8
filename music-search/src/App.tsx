@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import ITrack from './types/Track'
 import CardsDeck from './components/CardsDeck'
 import { Container } from 'react-bootstrap';
+import TrackDetails from './components/TrackDetails';
 
 function App() {
   const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -40,7 +41,7 @@ function App() {
           <Route path='/' render={(routerProps) => <NavBar {...routerProps} query={query} setQuery={setQuery} searchFetch={searchFetch} />} />
           <Container className='mt-5'>
             <Route path='/' exact render={(routerProps) => <CardsDeck {...routerProps} tracks={tracks} isLoading={isLoading} />} />
-            {/* <Route path='/TrackDetails/:trackId' component={} /> */}
+            <Route path='/TrackDetails/:trackId' component={TrackDetails} />
           </Container>
 
           {/* <img src={logo} className="App-logo" alt="logo" />
