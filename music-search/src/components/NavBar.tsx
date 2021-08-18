@@ -1,7 +1,20 @@
+import { ChangeEvent } from "react";
 import { Navbar, Nav, Form, Image, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
 
-const NavBar = () => {
+interface NavBarProps {
+    query: string
+    setQuery: any
+    searchFetch: any
+    }
+
+
+const NavBar = ({ history, location, query, setQuery, searchFetch }: RouteComponentProps & NavBarProps) => {
+
+    const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value)
+    }
+
     return (  
         <Navbar bg="light" variant="light" expand="sm">
                 <Link to='/'>
@@ -45,15 +58,15 @@ const NavBar = () => {
                         type="text"
                         placeholder="Search Music"
                         className="m-2 w-50"
-                        // value={this.state.query}
-                        // onChange={(e) => this.inputChange(e)}
+                        value={query}
+                        onChange={inputChange}
                     // onKeyDown={(e) => {
                     //     if (e.key === 'Enter') {
                     //         this.props.fecthJobs(this.props.query)
                     //     }
                     // }}
                     />
-                    <Button className='my-2' variant="outline-info"  >Search</Button>
+                    <Button className='my-2' variant="outline-info" onClick={()=> searchFetch(query)} >Search</Button>
                 </Navbar.Collapse>
             </Navbar>
     );
