@@ -1,4 +1,4 @@
-interface Artist {
+export interface IArtist {
     id: number
     name: string
     link: string
@@ -11,7 +11,7 @@ interface Artist {
     type: string
 }
 
-interface Album {
+export interface IAlbum {
     id: number
     title: string
     cover: string
@@ -24,7 +24,7 @@ interface Album {
     type: string
 }
 
-interface Tracks {
+interface ITrack {
     id: number
     readable: boolean
     title: string
@@ -38,9 +38,9 @@ interface Tracks {
     explicit_content_cover: number
     preview: string
     md5_image: string
-    artist: Artist
-    album: Album
+    artist: IArtist
+    album: IAlbum
     type: string
 }
 
-export default Tracks
+export default ITrack

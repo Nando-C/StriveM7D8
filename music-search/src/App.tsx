@@ -4,20 +4,25 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import NavBar from './components/NavBar';
-import Tracks from './types/Tracks';
+import ITrack from './types/Track'
+import CardsDeck from './components/CardsDeck'
+import { Container } from 'react-bootstrap';
 
 function App() {
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [query, setQuery] = useState('')
-  const [tracks, setTracks] = useState<Tracks[]>([])
-
+  const [tracks, setTracks] = useState<ITrack[]>([])
+  
+  
   const searchFetch = async (q = 'foals') => {
     try {
       let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${q}`)
       console.log(response);
 
-      let data = (await response.json()).data as Tracks[]
+      let data = (await response.json()).data as ITrack[]
       console.log(data)
       setTracks(data)
+      setIsLoading(false)
       
     } catch (error) {
       console.log(error);
@@ -30,11 +35,15 @@ function App() {
 
   return (
     <Router>
-      <Route path='/' render={(routerProps) => <NavBar {...routerProps} query={query} setQuery={setQuery} searchFetch={searchFetch}/>} />
-
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <Route path='/' render={(routerProps) => <NavBar {...routerProps} query={query} setQuery={setQuery} searchFetch={searchFetch}/>} />
+      <Container className='mt-5'>
+        <Route path='/' exact render={(routerProps) => <CardsDeck {...routerProps} tracks={tracks} isLoading={isLoading} />} />
+        {/* <Route path='/' exact  */}
+      </Container>
+
+          {/* <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
@@ -45,7 +54,7 @@ function App() {
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
+          </a> */}
         </header>
       </div>
     </Router>

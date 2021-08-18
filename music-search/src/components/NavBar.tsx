@@ -4,9 +4,9 @@ import { Link, RouteComponentProps } from "react-router-dom";
 
 interface NavBarProps {
     query: string
-    setQuery: any
-    searchFetch: any
-    }
+    setQuery: React.Dispatch<React.SetStateAction<string>>
+    searchFetch: (q?: string) => Promise<void>
+}
 
 
 const NavBar = ({ history, location, query, setQuery, searchFetch }: RouteComponentProps & NavBarProps) => {
@@ -16,7 +16,8 @@ const NavBar = ({ history, location, query, setQuery, searchFetch }: RouteCompon
     }
 
     return (  
-        <Navbar bg="light" variant="light" expand="sm">
+        <>
+        <Navbar bg="light" variant="light" expand="sm" >
                 <Link to='/'>
                     <Image className='brandLogo mr-3' src='https://cdn.dribbble.com/users/60166/screenshots/11313975/media/5f96fe67afaa4b9a24e5a2d5099e1d7f.jpg?compress=1&resize=60x50'/>
                 </Link>
@@ -69,6 +70,7 @@ const NavBar = ({ history, location, query, setQuery, searchFetch }: RouteCompon
                     <Button className='my-2' variant="outline-info" onClick={()=> searchFetch(query)} >Search</Button>
                 </Navbar.Collapse>
             </Navbar>
+        </>
     );
 }
  
