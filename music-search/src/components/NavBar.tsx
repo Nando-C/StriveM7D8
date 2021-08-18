@@ -15,6 +15,12 @@ const NavBar = ({ history, location, query, setQuery, searchFetch }: RouteCompon
         setQuery(e.target.value)
     }
 
+    const search = () => {
+        searchFetch(query)
+        history.push('/')
+        setQuery('')
+    }
+
     return (  
         <>
         <Navbar bg="light" variant="light" expand="sm" className='rounded-lg sticky-top' >
@@ -35,11 +41,14 @@ const NavBar = ({ history, location, query, setQuery, searchFetch }: RouteCompon
                         onChange={inputChange}
                         onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
                             if (e.key === 'Enter') {
-                                searchFetch(query)
+                                search()
+                                // searchFetch(query)
+                                // history.push('/')
+                                // setQuery('')
                             }
                         }}
                     />
-                    <Button className='my-2' variant="outline-info" onClick={()=> searchFetch(query)} >Search</Button>
+                    <Button className='my-2' variant="outline-info" onClick={()=> search()} >Search</Button>
                 </Navbar.Collapse>
             </Navbar>
         </>

@@ -37,11 +37,11 @@ function App() {
     <Router>
       <div className="App">
         <header className="App-header">
-      <Route path='/' render={(routerProps) => <NavBar {...routerProps} query={query} setQuery={setQuery} searchFetch={searchFetch}/>} />
-      <Container className='mt-5'>
-        <Route path='/' exact render={(routerProps) => <CardsDeck {...routerProps} tracks={tracks} isLoading={isLoading} />} />
-        {/* <Route path='/' exact  */}
-      </Container>
+          <Route path='/' render={(routerProps) => <NavBar {...routerProps} query={query} setQuery={setQuery} searchFetch={searchFetch} />} />
+          <Container className='mt-5'>
+            <Route path='/' exact render={(routerProps) => <CardsDeck {...routerProps} tracks={tracks} isLoading={isLoading} />} />
+            {/* <Route path='/TrackDetails/:trackId' component={} /> */}
+          </Container>
 
           {/* <img src={logo} className="App-logo" alt="logo" />
           <p>

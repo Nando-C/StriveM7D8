@@ -18,20 +18,22 @@ const CardsDeck = ({ history, location, tracks, isLoading }: RouteComponentProps
             <Row>
                     {isLoading 
                     ? <h1>Loading...</h1>
-                    : tracks.map(t => 
+                    : tracks.map(track => 
                         <>
                             <Col className='px-2 mb-4'>
                                 <Card style={{ width: '18rem' }}>
-                                    <Link to={'/Album/' + t.album.id}>
-                                        <Card.Img variant="top" src={t.album.cover_medium} />
+                                    <Link to={'/Album/' + track.album.id}>
+                                        <Card.Img variant="top" src={track.album.cover_medium} />
                                     </Link>
                                     <div className="card-play"></div>
                                     {/* <i class="fab fa-spotify"></i> */}
                                     <Card.Body className='card-body text-center p-3'>
-                                        <Card.Title><h5>{t.album.title}</h5></Card.Title>
+                                        <Link to={'/TrackDetails/' + track.id}>
+                                            <Card.Title><h5>{track.title}</h5></Card.Title>
+                                        </Link> 
                                         <Card.Text className='card-text'>
-                                            <Link to={'/Artist/' + t.artist.id}>
-                                                <p>{t.artist.name}</p>
+                                            <Link to={'/Artist/' + track.artist.id}>
+                                                <p>{track.artist.name}</p>
                                             </Link>
                                         </Card.Text>
                                         {/* <Button variant="primary">Go somewhere</Button> */}
